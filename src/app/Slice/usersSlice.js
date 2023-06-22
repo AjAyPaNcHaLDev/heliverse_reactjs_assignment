@@ -16,8 +16,15 @@ const initialState = {
 };
 
 export const fetchData = createAsyncThunk("api/users", async () => {
+  var protocol = window.location.protocol;
+  var domain = window.location.hostname;
+  var port = window.location.port;
+
+  console.log("Protocol: " + protocol);
+  console.log("Domain: " + domain);
+  console.log("Port: " + port);
   const { data } = await axios.get(
-    "http://localhost:5173/heliverse_mock_data.json"
+    `${protocol}//${domain}:${port}/heliverse_mock_data.json`
   );
 
   return data;
